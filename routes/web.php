@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Auth::routes();
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/blog/posts', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/category/{category:slug}/posts', [BlogController::class, 'postsByCategory'])->name('posts.byCategory');
+Route::get('/blog/writer/{user:slug}/posts', [BlogController::class, 'postsByWriter'])->name('posts.byWriter');
+Route::get('/blog/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');

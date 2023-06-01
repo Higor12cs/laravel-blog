@@ -6,3 +6,26 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+@media screen and (min-width: 801px) {
+    .header-title {
+        font-size: 45px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .header-title {
+        font-size: 35px;
+    }
+}
+
+.post-content figure {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.post-content figure img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}

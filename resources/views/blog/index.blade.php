@@ -1,24 +1,27 @@
 @extends('layouts.app')
-@section('title', 'Home')
+
+@section('title', 'Blog')
 
 @section('content')
     <x-header>
-        {{ __('Higor Carneiro') }} 🤙
+        {{ __('Blog') }} 📒
     </x-header>
     <x-categories-navbar />
     <div class="container mt-4">
-        <div class="row">
-            <h2 class="mb-3">{{ __('Latest Posts') }} 👇</h2>
+        <div class="row justify-content-center">
             <div class="col-lg-8 mb-4">
+                <h2 class="mb-3">{{ __('All Posts') }} 👇</h2>
                 @foreach ($posts as $post)
                     <x-post-preview :post="$post" />
                 @endforeach
-                <div class="d-grid">
-                    <a href="{{ route('blog.index') }}" class="btn btn-lg btn-primary">{{ __('All Posts') }}</a>
+
+                <div class="fs-5">
+                    {{ $posts->links() }}
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
-                <x-about-sidebar />
+                <h2 class="mb-3">{{ __('Top Categories') }} 👇</h2>
+                <x-categories-sidebar />
             </div>
         </div>
     </div>
